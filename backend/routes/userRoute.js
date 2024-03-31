@@ -8,7 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
   getUsers,
-  deleteUsers,
+  deleteUser,
   getUserByID,
   updateUser,
 } from "../controllers/userController.js";
@@ -26,7 +26,7 @@ router
   .put(protect, updateUserProfile);
 router
   .route("/:id")
-  .delete(protect, admin, deleteUsers)
+  .delete(protect, admin, deleteUser)
   .get(protect, admin, getUserByID)
   .put(protect, admin, updateUser);
 
