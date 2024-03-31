@@ -1,6 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../model/userModel.js";
 import generateToken from "../utils/generateToken.js";
+import Order from "../model/orderModel.js"; // Make sure this is correctly imported
 
 // @desc Auth user & get token
 // @route GET api/users/login
@@ -157,8 +158,12 @@ const deleteUser = asyncHandler(async (req, res) => {
       throw new Error("Cannot delete admin user");
     }
 
+    await Order.deleteMany({ user: user._id });
     await User.deleteOne({ _id: user._id });
-    res.status(200).json({ message: "User deleted successfully" });
+
+    res
+      .status(200)
+      .json({ message: "User and their orders deleted successfully" });
   } else {
     res.status(400);
     throw new Error("User not found");

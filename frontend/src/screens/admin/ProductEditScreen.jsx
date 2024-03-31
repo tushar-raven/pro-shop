@@ -117,10 +117,7 @@ const ProductEditScreen = () => {
               />
             </Form.Group>
 
-            <Form.Group
-              controlId="image
-            "
-            >
+            <Form.Group controlId="image">
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type="text"
