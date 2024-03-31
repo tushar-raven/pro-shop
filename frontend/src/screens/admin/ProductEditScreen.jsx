@@ -47,9 +47,20 @@ const ProductEditScreen = () => {
     if (result.error) {
       toast.error(result.error);
     } else {
-      toast.success("Product updated");
-      navigate("/admin/productlist");
+      const hasChanged =
+        updatedProduct.name !== product.name ||
+        updatedProduct.price !== product.price ||
+        updatedProduct.image !== product.image ||
+        updatedProduct.brand !== product.brand ||
+        updatedProduct.category !== product.category ||
+        updatedProduct.countInStock !== product.countInStock ||
+        updatedProduct.description !== product.description;
+
+      if (hasChanged) {
+        toast.success("Product updated");
+      }
     }
+    navigate("/admin/productlist");
   };
 
   const uploadFileHandler = async (e) => {
